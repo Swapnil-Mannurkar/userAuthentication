@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -8,8 +8,31 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
+import users from "./users.json";
 
 const ForgotPassword = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleResetPassword = () => {
+    let usersData = JSON.stringify(users);
+    usersData = JSON.parse(usersData)["users"];
+    const flag = false;
+    for (let i = 0; i < usersData.length; i++) {
+      if (usersData[i].username === username) {
+        if (usersData[i].password == "") {
+          Alert.alert("Password cannot be empty");
+        } else {
+          usersData[i].password = password;
+          flag = true;
+        }
+      }
+    }
+    if (!flag) {
+      Alert.alert("Username is not found");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -17,16 +40,18 @@ const ForgotPassword = ({ navigation }) => {
         <TextInput
           style={styles.inputField}
           placeholder="Enter your user name"
+          onChangeText={setUsername}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Enter your new password"
+          onChangeText={setPassword}
         />
       </View>
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => handleResetPassword()}
         >
           <Text style={styles.buttonText}>Reset Password</Text>
         </TouchableOpacity>

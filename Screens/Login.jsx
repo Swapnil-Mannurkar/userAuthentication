@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -8,8 +8,30 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
+import users from "./users.json";
 
 const Login = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    try {
+      let usersData = JSON.stringify(users);
+      usersData = JSON.parse(usersData)["users"];
+      const value = usersData.find(
+        (user) =>
+          user["username"] == username.trim() && user["password"] == password
+      );
+      if (value != null) {
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Login failed.", "Invalid email or password.");
+      }
+    } catch (error) {
+      console.error('Login failed.', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -17,10 +39,13 @@ const Login = ({ navigation }) => {
         <TextInput
           style={styles.inputField}
           placeholder="Enter your user name"
+          name = "username"
+          onChangeText={setUsername}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Enter your password"
+          onChangeText={setPassword}
         />
         <Text
           style={styles.forgotPassword}
@@ -38,7 +63,7 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => handleLogin()}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
