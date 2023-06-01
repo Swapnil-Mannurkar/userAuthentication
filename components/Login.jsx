@@ -5,13 +5,11 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   Alert,
   TouchableOpacity,
-  Pressable,
 } from "react-native";
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -26,7 +24,7 @@ const Login = () => {
         />
         <Text
           style={styles.forgotPassword}
-          onPress={() => Alert.alert("Simple Button pressed")}
+          onPress={() => navigation.navigate('ForgotPassword')}
         >
           Forgot password?
         </Text>
@@ -34,13 +32,13 @@ const Login = () => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => Alert.alert("Simple Button pressed")}
+          onPress={() => navigation.navigate('Signup')}
         >
           <Text style={styles.buttonText}>Signup</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => Alert.alert("Simple Button pressed")}
+          onPress={() => navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>

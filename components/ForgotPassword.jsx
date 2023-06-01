@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Signup = ({navigation}) => {
+const ForgotPassword = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -20,29 +20,15 @@ const Signup = ({navigation}) => {
         />
         <TextInput
           style={styles.inputField}
-          placeholder="Enter your email-id"
+          placeholder="Enter your new password"
         />
-        <TextInput
-          style={styles.inputField}
-          placeholder="Enter your phone number"
-        />
-        <TextInput
-          style={styles.inputField}
-          placeholder="Create your new password"
-        />
-        <Text
-          style={styles.forgotPassword}
-          onPress={() => navigation.navigate('Login')}
-        >
-          Already have an account?
-        </Text>
       </View>
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Login')}
         >
-          <Text style={styles.buttonText}>Signup</Text>
+          <Text style={styles.buttonText}>Reset Password</Text>
         </TouchableOpacity>
       </View>
 
@@ -56,6 +42,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
     justifyContent: "center",
+    // borderWidth: 2,
+    // borderColor: "black",
+    // marginTop: 250,
+    // marginLeft: 40,
+    // marginRight: 40,
+    // marginBottom: 250,
   },
 
   inputField: {
@@ -70,8 +62,8 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginRight: 50,
-    marginLeft: 50,
+    marginRight: 110,
+    marginLeft: 110,
   },
 
   buttonContainer: {
@@ -93,8 +85,8 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: "blue",
     marginTop: 10,
-    marginRight: 50,
+    marginRight: 90,
   },
 });
 
-export default Signup;
+export default ForgotPassword;
