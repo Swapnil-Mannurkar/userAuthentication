@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const ForgotPassword = ({navigation}) => {
+const ForgotPassword = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -26,7 +26,7 @@ const ForgotPassword = ({navigation}) => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.buttonText}>Reset Password</Text>
         </TouchableOpacity>

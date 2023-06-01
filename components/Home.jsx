@@ -1,13 +1,7 @@
 import React from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    Alert,
-    TouchableOpacity,
-  } from "react-native";
+import { StyleSheet, Text, View, Alert, TouchableOpacity } from "react-native";
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -15,12 +9,11 @@ const Home = ({navigation}) => {
 
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
       </View>
-
     </View>
   );
 };

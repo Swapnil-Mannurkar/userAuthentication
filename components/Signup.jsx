@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -32,7 +32,7 @@ const Signup = ({navigation}) => {
         />
         <Text
           style={styles.forgotPassword}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
         >
           Already have an account?
         </Text>
@@ -40,7 +40,7 @@ const Signup = ({navigation}) => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={styles.buttonText}>Signup</Text>
         </TouchableOpacity>
