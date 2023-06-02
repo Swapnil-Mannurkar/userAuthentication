@@ -17,13 +17,15 @@ const ForgotPassword = ({ navigation }) => {
   const handleResetPassword = () => {
     let usersData = JSON.stringify(users);
     usersData = JSON.parse(usersData)["users"];
-    const flag = false;
+    let flag = false;
     for (let i = 0; i < usersData.length; i++) {
       if (usersData[i].username === username) {
-        if (usersData[i].password == "") {
+        if (password == "") {
           Alert.alert("Password cannot be empty");
+          flag = true;
         } else {
           usersData[i].password = password;
+          console.log(usersData)
           flag = true;
         }
       }

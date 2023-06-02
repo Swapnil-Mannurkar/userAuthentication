@@ -10,6 +10,10 @@ import {
 } from "react-native";
 
 const Signup = ({ navigation }) => {
+  const handleSignup = () => {
+    
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -40,7 +44,7 @@ const Signup = ({ navigation }) => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => handleSignup()}
         >
           <Text style={styles.buttonText}>Signup</Text>
         </TouchableOpacity>
