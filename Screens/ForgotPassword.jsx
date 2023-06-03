@@ -8,7 +8,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import { jsonData } from "./Test";
+import { jsonData } from "./Credentials";
 
 const ForgotPassword = ({ navigation }) => {
   const [username, setUsername] = useState("");
