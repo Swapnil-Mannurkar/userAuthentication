@@ -9,12 +9,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import users from "./users.json";
+import JsonExporter from './JsonExporter';
 
 const ForgotPassword = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     let usersData = JSON.stringify(users);
     usersData = JSON.parse(usersData)["users"];
     let flag = false;
@@ -25,8 +26,17 @@ const ForgotPassword = ({ navigation }) => {
           flag = true;
         } else {
           usersData[i].password = password;
-          console.log(usersData)
           flag = true;
+          try {
+            usersData = JSON.stringify({ users: usersData })
+            JsonExporter.exportJson(usersData, 'users.json');
+            console.log(usersData);
+            console.log("Password reset successful!");
+          } catch (error) {
+            console.error("Failed to update JSON file:", error);
+            Alert.alert("Password reset failed.", "An error occurred.");
+          }
+          break;
         }
       }
     }
