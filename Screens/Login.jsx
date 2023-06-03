@@ -20,17 +20,26 @@ const Login = ({ navigation }) => {
       let flag = false;
 
       for (let i = 0; i < usersData.length; i++) {
-        if (usersData[i]["username"] === username && usersData[i]["password"] === password) {
-            flag = true;
-            try {
-              navigation.navigate("Home");
-            } catch (error) {
-              console.error("Failed to login:", error);
-            }
-            break;
+        if (
+          usersData[i]["username"] === username.trim() &&
+          usersData[i]["password"] === password.trim()
+        ) {
+          flag = true;
+          try {
+            setUsername("");
+            setPassword("");
+            navigation.navigate("Home");
+          } catch (error) {
+            setUsername("");
+            setPassword("");
+            console.error("Failed to login:", error);
           }
+          break;
         }
+      }
       if (!flag) {
+        setUsername("");
+        setPassword("");
         Alert.alert("Login failed. Invalid email or password.");
       }
     } catch (error) {
@@ -46,11 +55,13 @@ const Login = ({ navigation }) => {
           style={styles.inputField}
           placeholder="Enter your user name"
           name="username"
+          value={username}
           onChangeText={setUsername}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Enter your password"
+          value={password}
           onChangeText={setPassword}
         />
         <Text

@@ -19,15 +19,15 @@ const ForgotPassword = ({ navigation }) => {
     let flag = false;
 
     for (let i = 0; i < usersData.length; i++) {
-      if (usersData[i]["username"] === username) {
+      if (usersData[i]["username"] === username.trim()) {
         if (password == "") {
           Alert.alert("Password cannot be empty");
           flag = true;
         } else {
-          usersData[i]["password"] = password;
+          usersData[i]["password"] = password.trim();
           flag = true;
           try {
-            navigation.navigate("Test", { param: usersData });
+            navigation.navigate("Credentials", { param: usersData });
           } catch (error) {
             console.error("Failed to update JSON file:", error);
             Alert.alert("Password reset failed.", "An error occurred.");
@@ -75,12 +75,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
     justifyContent: "center",
-    // borderWidth: 2,
-    // borderColor: "black",
-    // marginTop: 250,
-    // marginLeft: 40,
-    // marginRight: 40,
-    // marginBottom: 250,
   },
 
   inputField: {
@@ -113,12 +107,6 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontWeight: "bold",
-  },
-
-  forgotPassword: {
-    color: "blue",
-    marginTop: 10,
-    marginRight: 90,
   },
 });
 

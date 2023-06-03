@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -8,10 +8,33 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
+import { jsonData } from "./Credentials";
 
 const Signup = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhNum] = useState("");
+
   const handleSignup = () => {
-    
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      phoneNumber === ""
+    ) {
+      Alert.alert("Please fill all the fields");
+    } else {
+      console.log(jsonData());
+      const newUser = {
+        username: username.trim(),
+        email: email.trim(),
+        password: password.trim(),
+        phoneNumber: phoneNumber.trim(),
+      };
+      const updatedData = [...jsonData(), newUser];
+      navigation.navigate("Credentials", { param: updatedData });
+    }
   };
 
   return (
@@ -21,18 +44,22 @@ const Signup = ({ navigation }) => {
         <TextInput
           style={styles.inputField}
           placeholder="Enter your user name"
+          onChangeText={setUsername}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Enter your email-id"
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Enter your phone number"
+          onChangeText={setPhNum}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Create your new password"
+          onChangeText={setPassword}
         />
         <Text
           style={styles.forgotPassword}

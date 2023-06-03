@@ -23,19 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
     justifyContent: "center",
-    // borderWidth: 2,
-    // borderColor: "black",
-    // marginTop: 250,
-    // marginLeft: 40,
-    // marginRight: 40,
-    // marginBottom: 250,
-  },
-
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginRight: 110,
-    marginLeft: 110,
   },
 
   buttonContainer: {

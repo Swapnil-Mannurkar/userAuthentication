@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 let userData = [
   {
     username: "admin",
+    email: "admin@gmail.com",
+    phone: "9876543210",
     password: "admin",
   },
   {
     username: "qwe",
+    email: "qwe@gmail.com",
+    phone: "9876543210",
     password: "qwe",
   },
 ];
@@ -23,25 +22,22 @@ export const jsonData = () => {
   return userData;
 };
 
-const Test = ({ navigation }) => {
+const Credentials = ({ navigation }) => {
   const route = useRoute();
   const { param } = route.params;
   userData = param;
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate("Login");
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
-      <View style={{ alignItems: "center" }}>
-        <Text>Password Updated Successfully</Text>
-      </View>
-      <View style={styles.buttons}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-      </View>
-
+      <Text style={styles.text}>Redirecting to login page...</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -50,47 +46,14 @@ const Test = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#ffffff",
   },
-
-  inputField: {
-    borderWidth: 1,
-    borderColor: "black",
-    width: 200,
-    padding: 5,
-    marginTop: 20,
-    color: "black",
-  },
-
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginRight: 110,
-    marginLeft: 110,
-  },
-
-  buttonContainer: {
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "black",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-
-  buttonText: {
-    color: "black",
-    textAlign: "center",
+  text: {
+    fontSize: 24,
     fontWeight: "bold",
-  },
-
-  forgotPassword: {
-    color: "blue",
-    marginTop: 10,
-    marginRight: 90,
   },
 });
 
-export default Test;
+export default Credentials;
