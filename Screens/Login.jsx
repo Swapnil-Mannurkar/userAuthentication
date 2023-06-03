@@ -8,7 +8,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import users from "./users.json";
+import {jsonData}  from './Test'
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -16,17 +16,14 @@ const Login = ({ navigation }) => {
 
   const handleLogin = () => {
     try {
-      let usersData = JSON.stringify(users);
-      usersData = JSON.parse(usersData)["users"];
-      const value = usersData.find(
-        (user) =>
-          user["username"] == username.trim() && user["password"] == password
-      );
-      if (value != null) {
+      let usersData = jsonData();
+      console.log(usersData)
+      
+      /*if (value != null) {
         navigation.navigate("Home");
       } else {
         Alert.alert("Login failed.", "Invalid email or password.");
-      }
+      }*/
     } catch (error) {
       console.error('Login failed.', error);
     }

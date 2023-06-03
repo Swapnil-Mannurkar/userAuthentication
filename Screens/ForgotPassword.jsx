@@ -8,30 +8,27 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import users from "./users.json";
-import JsonExporter from './JsonExporter';
+import {jsonData}  from './Test'
 
 const ForgotPassword = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleResetPassword = async () => {
-    let usersData = JSON.stringify(users);
-    usersData = JSON.parse(usersData)["users"];
+    let usersData = jsonData();
     let flag = false;
+
     for (let i = 0; i < usersData.length; i++) {
-      if (usersData[i].username === username) {
+      if (usersData[i]["username"] === username) {
         if (password == "") {
           Alert.alert("Password cannot be empty");
           flag = true;
         } else {
-          usersData[i].password = password;
+          usersData[i]["password"] = password;
           flag = true;
           try {
             usersData = JSON.stringify({ users: usersData })
-            JsonExporter.exportJson(usersData, 'users.json');
-            console.log(usersData);
-            console.log("Password reset successful!");
+            navigation.navigate("Test", {param: usersData})
           } catch (error) {
             console.error("Failed to update JSON file:", error);
             Alert.alert("Password reset failed.", "An error occurred.");
