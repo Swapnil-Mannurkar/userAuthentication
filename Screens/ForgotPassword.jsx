@@ -8,7 +8,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import {jsonData}  from './Test'
+import { jsonData } from "./Test";
 
 const ForgotPassword = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -27,8 +27,7 @@ const ForgotPassword = ({ navigation }) => {
           usersData[i]["password"] = password;
           flag = true;
           try {
-            usersData = JSON.stringify({ users: usersData })
-            navigation.navigate("Test", {param: usersData})
+            navigation.navigate("Test", { param: usersData });
           } catch (error) {
             console.error("Failed to update JSON file:", error);
             Alert.alert("Password reset failed.", "An error occurred.");

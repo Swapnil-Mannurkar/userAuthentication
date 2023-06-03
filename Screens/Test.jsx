@@ -10,27 +10,25 @@ import {
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
-export const jsonData = () => {
-  console.log("entered");
-  let a = {
-    users: [
-      {
-        username: "asd",
-        password: "asd",
-      },
-      {
-        username: "qwe",
-        password: "qwe",
-      },
-    ],
-  };
+let userData = [
+  {
+    username: "admin",
+    password: "admin",
+  },
+  {
+    username: "qwe",
+    password: "qwe",
+  },
+];
 
-  return a["users"];
+export const jsonData = () => {
+  return userData;
 };
 
 const Test = ({ navigation }) => {
   const route = useRoute();
   const { param } = route.params;
+  userData = param;
 
   return (
     <View style={styles.container}>
